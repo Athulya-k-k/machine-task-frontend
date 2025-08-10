@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import Protected from './components/Protected';
+import Navbar from './components/Navbar';
+import EmailScheduler from './components/EmailScheduler';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('access'));
+
+  const handleLogout = () => {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    setLoggedIn(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar loggedIn={loggedIn} onLogout={handleLogout} />
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login onLogin={() => setLoggedIn(true)} />} />
+        <Route
+          path="/protected"
+          element={loggedIn ? <Protected /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/schedule"
+          element={loggedIn ? <EmailScheduler /> : <Navigate to="/login" />}
+        />
+        <Route path="*" element={<Navigate to="/register" />} />
+      </Routes>
+    </Router>
   );
 }
 

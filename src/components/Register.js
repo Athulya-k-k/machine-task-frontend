@@ -31,7 +31,7 @@ function Register() {
 
     try {
       // Use axios directly so no token is sent
-      await axios.post('http://localhost:8000/api/auth/register/', data, {
+      await axios.post('http://51.20.117.87/api/auth/register/', data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -47,7 +47,7 @@ function Register() {
   const handleOTPSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/auth/verify-otp/', {
+      await axios.post('http://51.20.117.87/api/auth/verify-otp/', {
         email: emailForOTP,
         otp: otp
       });

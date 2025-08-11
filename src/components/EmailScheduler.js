@@ -30,11 +30,11 @@ function EmailScheduler() {
       };
 
       if (editId) {
-        await axios.put(`http://localhost:8000/emails/schedule/${editId}/`, payload);
+        await axios.put(`http://51.20.117.87/emails/schedule/${editId}/`, payload);
         setMessage('✅ Email updated successfully!');
         setEditId(null);
       } else {
-        await axios.post('http://localhost:8000/emails/schedule/', payload);
+        await axios.post('http://51.20.117.87/emails/schedule/', payload);
         setMessage('✅ Email scheduled successfully!');
       }
 
@@ -53,7 +53,7 @@ function EmailScheduler() {
 
   const fetchScheduledEmails = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/emails/schedule/all/');
+      const res = await axios.get('http://51.20.117.87/emails/schedule/all/');
       setEmails(res.data);
     } catch (err) {
       console.error('Failed to fetch emails:', err);
@@ -76,7 +76,7 @@ function EmailScheduler() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this scheduled email?')) {
       try {
-        await axios.delete(`http://localhost:8000/emails/schedule/${id}/`);
+        await axios.delete(`http://51.20.117.87/emails/schedule/${id}/`);
         setMessage('🗑 Email deleted successfully.');
         fetchScheduledEmails();
       } catch (err) {

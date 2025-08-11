@@ -14,7 +14,7 @@ function Login({ onLogin }) {
     e.preventDefault();
     try {
       // Use axios directly to avoid sending Bearer token
-      const res = await axios.post('http://localhost:8000/api/auth/login/', formData);
+      const res = await axios.post('http://51.20.117.87/api/auth/login/', formData);
       localStorage.setItem('access', res.data.access);
       localStorage.setItem('refresh', res.data.refresh);
       onLogin();

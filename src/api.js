@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL:'http://51.20.117.87/api/auth/',
+  baseURL:'https://51.20.117.87.sslip.io/api/auth/',
 });
 
 api.interceptors.request.use((config) => {

@@ -31,7 +31,7 @@ function Register() {
 
     try {
       // Use axios directly so no token is sent
-      await axios.post('http://51.20.117.87/api/auth/register/', data, {
+      await axios.post('https://51.20.117.87.sslip.io/api/auth/register/', data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

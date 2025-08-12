@@ -30,11 +30,11 @@ function EmailScheduler() {
       };
 
       if (editId) {
-        await axios.put(`https://51.20.117.87.sslip.io/emails/schedule/${editId}/`, payload);
+        await axios.put(`http://127.0.0.1:8000/emails/schedule/${editId}/`, payload);
         setMessage('✅ Email updated successfully!');
         setEditId(null);
       } else {
-        await axios.post('https://51.20.117.87.sslip.io/emails/schedule/', payload);
+        await axios.post('http://127.0.0.1:8000/emails/schedule/', payload);
         setMessage('✅ Email scheduled successfully!');
       }
 
@@ -53,7 +53,7 @@ function EmailScheduler() {
 
   const fetchScheduledEmails = async () => {
     try {
-      const res = await axios.get('https://51.20.117.87.sslip.io/emails/schedule/all/');
+      const res = await axios.get('http://127.0.0.1:8000/emails/schedule/all/');
       setEmails(res.data);
     } catch (err) {
       console.error('Failed to fetch emails:', err);
@@ -76,7 +76,7 @@ function EmailScheduler() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this scheduled email?')) {
       try {
-        await axios.delete(`https://51.20.117.87.sslip.io/emails/schedule/${id}/`);
+        await axios.delete(`http://127.0.0.1:8000/emails/schedule/${id}/`);
         setMessage('🗑 Email deleted successfully.');
         fetchScheduledEmails();
       } catch (err) {
